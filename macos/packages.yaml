@@ -15,16 +15,13 @@ packages:
              exit 1;"
     check_file: /Applications/PackageMaker.app
 
-
   - name: gfortran
     source: script
     script: FILE=`mktemp -d gfortran.XXXXXX`; curl http://coudert.name/software/gfortran-4.9.0-Mavericks.dmg -Lo $FILE/gfortran.dmg && hdiutil attach $FILE/gfortran.dmg && sudo installer -pkg /Volumes/gfortran-4.9.0-Mavericks/gfortran.pkg -target "/" && hdiutil detach /Volumes/gfortran-4.9.0-Mavericks ; rm -rf $FILE
     check_file: /usr/local/bin/gfortran
-
 
   - name: cmake
     source: script
     script: FILE=`mktemp -d cmake.XXXXXX`; curl https://cmake.org/files/v3.4/cmake-3.4.1-Darwin-x86_64.dmg -Lo $FILE/cmake.dmg && yes | hdiutil attach $FILE/cmake.dmg && sudo cp -a /Volumes/cmake-3.4.1-Darwin-x86_64/CMake.app /Applications  && hdiutil detach /Volumes/cmake-3.4.1-Darwin-x86_64; sudo /Applications/CMake.app/Contents/bin/cmake-gui --install ; rm -rf $FILE
     check_file: /usr/local/bin/cmake 
     check_file: /Applications/CMake.app/Contents/bin/cmake
-
